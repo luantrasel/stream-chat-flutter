@@ -64,6 +64,7 @@ class ChannelListView extends StatefulWidget {
     this.separatorBuilder,
     this.errorBuilder,
     this.emptyBuilder,
+    this.loadingPageBuilder,
     this.onImageTap,
     this.loadingBuilder,
     this.pullToRefresh = true,
@@ -76,6 +77,9 @@ class ChannelListView extends StatefulWidget {
 
   /// The builder used when the channel list is empty.
   final WidgetBuilder emptyBuilder;
+
+  /// The builder used when the channel list is loading.
+  final WidgetBuilder loadingPageBuilder;
 
   /// The query filters to use.
   /// You can query on any of the custom fields you've defined on the [Channel].
@@ -226,6 +230,10 @@ class _ChannelListViewState extends State<ChannelListView>
           }
 
           if (!snapshot.hasData) {
+            if (widget.loadingPageBuilder != null) {
+              return widget.loadingPageBuilder(context);
+            }
+
             return LayoutBuilder(
               builder: (context, viewportConstraints) {
                 return SingleChildScrollView(
