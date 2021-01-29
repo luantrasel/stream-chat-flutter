@@ -70,6 +70,7 @@ class ChannelListView extends StatefulWidget {
     this.pullToRefresh = true,
     this.shrinkWrap = false,
     this.physics,
+    this.padding,
   }) : super(key: key);
 
   /// The builder that will be used in case of error
@@ -130,9 +131,14 @@ class ChannelListView extends StatefulWidget {
   /// Set it to false to disable the pull-to-refresh widget
   final bool pullToRefresh;
 
+  /// ShrinkWrap propery used in the channel list
   final bool shrinkWrap;
 
+  /// Physics propery used in the channel list
   final ScrollPhysics physics;
+
+  /// Padding propery used in the channel list
+  final EdgeInsetsGeometry padding;
 
   @override
   _ChannelListViewState createState() => _ChannelListViewState();
@@ -281,6 +287,7 @@ class _ChannelListViewState extends State<ChannelListView>
             physics: widget.physics ?? AlwaysScrollableScrollPhysics(),
             controller: _scrollController,
             shrinkWrap: widget.shrinkWrap,
+            padding: widget.padding,
             childrenDelegate: SliverChildBuilderDelegate(
               (context, i) {
                 return _itemBuilder(context, i, channels);
