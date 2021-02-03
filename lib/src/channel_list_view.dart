@@ -71,6 +71,7 @@ class ChannelListView extends StatefulWidget {
     this.shrinkWrap = false,
     this.physics,
     this.padding,
+    this.queryOfflineFirst = false,
   }) : super(key: key);
 
   /// The builder that will be used in case of error
@@ -139,6 +140,9 @@ class ChannelListView extends StatefulWidget {
 
   /// Padding propery used in the channel list
   final EdgeInsetsGeometry padding;
+
+  /// If true, the first query of channels will get data from offline database
+  final bool queryOfflineFirst;
 
   @override
   _ChannelListViewState createState() => _ChannelListViewState();
@@ -438,6 +442,7 @@ class _ChannelListViewState extends State<ChannelListView>
       sortOptions: widget.sort,
       paginationParams: widget.pagination,
       options: widget.options,
+      onlyOffline: widget.queryOfflineFirst,
     );
 
     _scrollController.addListener(() {
