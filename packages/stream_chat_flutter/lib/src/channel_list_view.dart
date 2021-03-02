@@ -548,7 +548,6 @@ class _ChannelListViewState extends State<ChannelListView> {
                   ),
               ],
               child: Container(
-                color: StreamChatTheme.of(context).colorTheme.whiteSnow,
                 child: widget.channelPreviewBuilder?.call(context, channel) ??
                     ChannelPreview(
                       onLongPress: widget.onChannelLongPress,
